@@ -10,26 +10,20 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@Table(name = "countries")
+@Table(name = "company_industry")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CountriesEntities {
+public class CompanyIndustriesEntities {
 
     @Id
-    @Column(name = "countries_id")
-    public long countriesId;
+    @Column(name = "industry_id")
+    private int industriesId;
 
-    @Column(name = "countries_name")
-    public String countriesName;
-
-    @Column(name = "countries_short_name")
-    public String countriesShortName;
+    @Column(name = "industry_name")
+    private String industriesName;
 
     @OneToMany(targetEntity = LeadEntities.class, mappedBy = "lead_id", fetch = FetchType.LAZY)
     private Set<LeadEntities> leads;
-
-    @OneToMany(targetEntity = StatesEntities.class, mappedBy = "state_id", fetch = FetchType.LAZY)
-    private Set<StatesEntities> states;
 }

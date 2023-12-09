@@ -1,5 +1,6 @@
 package app.service.ERP.entities.crm;
 
+import app.service.ERP.entities.general.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -56,4 +57,35 @@ public class LeadEntities implements Serializable {
     @Column(name = "website")
     private String leadWebsite;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "leads_countries_id", nullable = false)
+    private CountriesEntities countries;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "leads_state_id", nullable = false)
+    private StatesEntities states;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "leads_cities_id", nullable = false)
+    private CitiesEntities cities;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "leads_post_code_id", nullable = false)
+    private PostCodeEntities postCode;
+
+    @Column(name = "lead_no_of_employee")
+    private String leadNoEmployee;
+
+    @Column(name = "lead_annual_revenue")
+    private String leadAnnualRevenue;
+    
+    @Column(name = "lead_source")
+    private String leadSource;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "leads_industries_id", nullable = false)
+    private CompanyIndustriesEntities companyIndustries;
+
+    @Column(name = "lead_description")
+    private String leadDesc;
 }

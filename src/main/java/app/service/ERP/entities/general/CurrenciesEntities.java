@@ -1,9 +1,6 @@
 package app.service.ERP.entities.general;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,4 +23,9 @@ public class CurrenciesEntities {
 
     @Column(name = "currencies_symbol")
     private String currenciesSymbol;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    @JoinColumn(name = "countries_id", nullable = false)
+    private CountriesEntities countries;
 }

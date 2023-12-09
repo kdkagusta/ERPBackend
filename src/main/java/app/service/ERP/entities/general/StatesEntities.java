@@ -1,13 +1,14 @@
 package app.service.ERP.entities.general;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import app.service.ERP.entities.crm.LeadEntities;
+import app.service.ERP.entities.crm.RatingEntities;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "states")
@@ -26,4 +27,14 @@ public class StatesEntities {
 
     @Column(name = "state_short_name")
     public String stateShortName;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "country_id", nullable = false)
+    private CountriesEntities countries;
+
+    @OneToMany(targetEntity = LeadEntities.class, mappedBy = "lead_id", fetch = FetchType.LAZY)
+    private Set<LeadEntities> leads;
+
+    @OneToMany(targetEntity = CitiesEntities.class, mappedBy = "cities_id", fetch = FetchType.LAZY)
+    private Set<CitiesEntities> cities;
 }
